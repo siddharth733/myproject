@@ -1,0 +1,8 @@
+admin/dist/
+admin/plugins/
+student/dist/
+student/plugins/
+teacher/dist/
+teacher/plugins/
+parent/dist/
+parent/plugins/

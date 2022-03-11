@@ -369,7 +369,7 @@ if(isset($_POST['feedback_btn'])){
 
     <section class="py-2 bg-dark text-white text-center">
         <div class="container-fluid">
-            Copyright 2022-2024 All Right Reserved. <br> <a href="" class="text-light"> School Managment System</a>
+            Copyright 2022-2024 All Right Reserved. <br> <a class="text-light" href="http://localhost:3000/">Contact Us</a> <br> <a href="" class="text-light"> School Managment System</a>
         </div>
     </section>
     <?php include('footer.php'); ?>
