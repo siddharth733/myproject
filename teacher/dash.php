@@ -18,7 +18,7 @@
   <!--navigation menu-->
   <nav class="nav navbar justify-content-center">
   <li <?php if (@$_GET['q'] == 0) echo 'class="active"'; ?>><a href="dash.php?q=0" class="text-success"><h4>Home </h4><span class="sr-only">(current)</span></a></li>
-          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2" class="nav-link text-success"><h4>User Rankings</h4></a></li>
+          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2" class="nav-link text-success"><h4>User Score</h4></a></li>
           <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dash.php?q=1" class="nav-link text-success"><h4>Users</h4></a></li>
           <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4" class="nav-link text-success"><h4>Add Exams</h4></a></li>
   </nav>
@@ -50,34 +50,29 @@
 
           //ranking start
           if (@$_GET['q'] == 2) {
-            echo  '<div class="panel title">
-            <table class="table bg-dark table-striped title1" >
-            <tr style="color:white">
-            <th><b>S.No</b></th>
-            <th><b>Name</b></th>
-            <th><b>Score</b></th>
-            </tr>'; 
-            $c = 0;
-            $cheack1 = mysqli_query($db_conn, "SELECT * FROM accounts WHERE type='student'");;
-            while ($row1 = mysqli_fetch_object($cheack1)) {
-            $id = $row1->email;
-            $q = mysqli_query($db_conn, "SELECT * FROM rank WHERE email='$id' ORDER BY score DESC") or die('Error223');
-            while ($row = mysqli_fetch_array($q)) {
-              $e = $row['email'];
-              $s = $row['score'];
-              $q12 = mysqli_query($db_conn, "SELECT * FROM accounts WHERE email='$e' ") or die('Error231');
-              while ($row = mysqli_fetch_array($q12)) {
-                $name = $row['name'];
-                $gender = $row['mobile'];
-              }
-              $c++;
-              echo '<tr style="color:#2db44a">
-              <td>' . $c . '</td>
-              <td>' . $name . '</td>
-              <td>' . $s . '</td>';
-          }
-        }
-            echo '</table></div>';
+             echo  '<div class="panel title">
+  <table class="table bg-dark table-striped title1" >
+  <tr style="color:white"><td><b>S.N.</b></td><td><b>Name</b></td><td><b>Email</b></td><td><b>Exams</b></td><td><b>Question Solved</b></td><td><b>Right</b></td><td><b>Wrong<b></td><td><b>Score</b></td>';
+  $ans = mysqli_query($db_conn,"SELECT * FROM accounts WHERE type='student'");
+            while($ans1 = mysqli_fetch_object($ans)){
+            $chec = $ans1->email;
+             $q = mysqli_query($db_conn, "SELECT * FROM history WHERE email='$chec' ORDER BY date DESC ") or die('Error197');
+             $c = 0;
+             while ($row = mysqli_fetch_array($q)) {
+               $eid = $row['eid'];
+               $s = $row['score'];
+               $w = $row['wrong'];
+               $r = $row['sahi'];
+               $qa = $row['level'];
+               $q23 = mysqli_query($db_conn, "SELECT title FROM quiz WHERE  eid='$eid' ") or die('Error208');
+               while ($row = mysqli_fetch_array($q23)) {
+                 $title = $row['title'];
+               }
+               $c++;
+               echo '<tr style="color:#2db44a"><td>' . $c . '</td><td>' . $ans1->name . '</td><td>' . $ans1->email . '</td><td>' . $title . '</td><td>' . $qa . '</td><td>' . $r . '</td><td>' . $w . '</td><td>' . $s . '</td></tr>';
+             }
+            }
+             echo '</table></div>';
           }
           ?>
 

@@ -15,8 +15,7 @@
   </div>
   <nav class="nav navbar justify-content-center">
   <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="account.php?q=1" class="nav-link text-success"><h4>Home</h4></a></li>
-            <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="account.php?q=2" class="nav-link text-success"><h4>History</h4></a></li>
-            <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="account.php?q=3" class="nav-link text-success"><h4>Score</h4></a></li>
+  <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="account.php?q=2" class="nav-link text-success"><h4>Score</h4></a></li>
   </nav>
     <!--navigation menu closed-->
     <div class="container mt-5">
@@ -144,42 +143,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
             }
             echo '</table></div>';
           }
-
-          //ranking start
-          if (@$_GET['q'] == 3) {
-            echo  '<div class="panel title">
-            <table class="table table-striped title1" >
-            <tr style="color:white">
-            <th><b>S.No</b></th>
-            <th><b>Name</b></th>
-            <th><b>Score</b></th>
-            </tr>'; 
-            $c = 0;
-            $cheack1 = mysqli_query($db_conn, "SELECT * FROM accounts WHERE type='student'");;
-            while ($row1 = mysqli_fetch_object($cheack1)) {
-            $id = $row1->email;
-            $q = mysqli_query($db_conn, "SELECT * FROM rank WHERE email='$id' ORDER BY score DESC") or die('Error223');
-            while ($row = mysqli_fetch_array($q)) {
-              $e = $row['email'];
-              $s = $row['score'];
-              $q12 = mysqli_query($db_conn, "SELECT * FROM accounts WHERE email='$e' ") or die('Error231');
-              while ($row = mysqli_fetch_array($q12)) {
-                $name = $row['name'];
-                $gender = $row['mobile'];
-              }
-              $c++;
-              echo '<tr style="color:#2db44a">
-              <td>' . $c . '</td>
-              <td>' . $name . '</td>
-              <td>' . $s . '</td>';
-          }
-        }
-            echo '</table></div>';
-          }
           ?>
-
-
-
         </div>
       </div>
     </div>
