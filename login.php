@@ -1,4 +1,29 @@
 <?php include('header.php'); ?>
+<nav class="navbar navbar-expand-lg navbar-dark default-color">
+        <a class="navbar-brand" href="#"> <b>SMS</b> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home
+                    </a>
+                </li>
+                <?php if (isset($_SESSION['login'])) {?>
+                <li class="nav-item">
+                    <a class="nav-link" href="teachers.php">Teachers</a>
+                </li>
+                <?php } ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="courses.php">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="feedBack.php">Feedback</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 <section class="lg-bg vh-100 d-flex">
     <div class="col-4 m-auto">
         <div class="card rounded shadow">
