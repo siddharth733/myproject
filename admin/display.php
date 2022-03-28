@@ -18,6 +18,7 @@ if (isset($_POST['delete'])){
                     <th>Name</th>
                     <th>Start Holiday</th>
                     <th>End Holiday</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
                 <?php
@@ -30,6 +31,7 @@ if (isset($_POST['delete'])){
                         <td><?php echo $res['name'] ?></td>
                         <td><?php echo date("d-m-Y", strtotime($res['start_holiday'])) ?></td>
                         <td><?php echo date("d-m-Y", strtotime($res['end_holiday'])) ?></td>
+                        <td> <button class="btn-primary btn"> <a href="edit.php?id=<?php echo $res['id']; ?>" class="text-white"> Edit </a> </button> </td>
                         <td><input type=hidden name=id value="<?= $res['id'] ?>"><button value="Delete" name="delete" class="btn btn-danger">Delete</button></td>
                     </tr>
                     </form>
